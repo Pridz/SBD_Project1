@@ -163,7 +163,10 @@ bool operator>(Pesel& left, Pesel& right) { return right < left; }
 
 bool operator==(Pesel& left, Pesel& right)
 {
-	std::string left_str = left.toString();
-	std::string right_str = right.toString();
+	char* ptr_l_str = left.toString();
+	char* ptr_r_str = right.toString();
+	std::string left_str = ptr_l_str;
+	std::string right_str = ptr_r_str;
+	delete[] ptr_l_str, ptr_r_str;
 	return left_str == right_str;
 }
