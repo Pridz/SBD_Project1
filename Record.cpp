@@ -12,6 +12,10 @@ void Record::setName(std::string *str) { name = *str; }
 
 void Record::setSurname(std::string *str) { surname = *str; }
 
+void Record::setName(char *str) { name = *str; }
+
+void Record::setSurname(char *str) { surname = *str; }
+
 void Record::setPesel(Pesel *pesel) { this->pesel = *pesel; }
 
 void Record::nullify()

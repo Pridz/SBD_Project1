@@ -17,6 +17,8 @@ public:
 
 	void setName(std::string*);
 	void setSurname(std::string*);
+	void setName(char*);
+	void setSurname(char*);
 	void setPesel(Pesel*);
 
 	void nullify();
