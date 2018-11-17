@@ -15,9 +15,9 @@ public:
 	std::string *getSurname();
 	Pesel *getPesel();
 
-	void setName();
-	void setSurname();
-	void setPesel();
+	void setName(std::string*);
+	void setSurname(std::string*);
+	void setPesel(Pesel*);
 
 	void nullify();
 	bool isNull();
@@ -28,5 +28,7 @@ public:
 bool operator<(Record& left, Record& right);
 bool operator>(Record& left, Record& right);
 bool operator==(Record& left, Record& right);
+bool operator!=(Record& left, Record& right);
+bool operator<=(Record& left, Record& right);
 
 #endif
