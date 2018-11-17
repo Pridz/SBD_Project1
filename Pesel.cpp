@@ -68,7 +68,7 @@ void Pesel::setPesel(char* pesel)
 	setYear(tmp);
 	tmp[0] = pesel[2], tmp[1] = pesel[3];
 	setMonth(tmp);
-	tmp[0] = pesel[4], tmp[1] = pesel[3];
+	tmp[0] = pesel[4], tmp[1] = pesel[5];
 	setDay(tmp);
 	tmp[0] = pesel[6], tmp[1] = pesel[7], tmp[2] = pesel[8];
 	setSeries(tmp);
@@ -125,6 +125,24 @@ bool Pesel::isNull()
 	}
 	delete[] str;
 	return true;
+}
+
+int Pesel::getCentury()
+{
+	int century;
+	if (month[0] == '0' || month[0] == '1')
+	{
+		century = 1900;
+	}
+	else if (month[0] == '8' || month[0] == '9')
+	{
+		century = 1800;
+	}
+	else
+	{
+		century = 2000;
+	}
+	return century;
 }
 
 Pesel& Pesel::operator=(Pesel& other)
