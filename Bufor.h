@@ -2,6 +2,7 @@
 #define BUFOR_H
 
 #include"Record.h"
+#include<cassert>
 
 class Bufor
 {
@@ -9,14 +10,20 @@ class Bufor
 	int size;
 	Record *records;
 
+	void changeRecords();
+	bool areRecordsInitialized();
 public:
+	Bufor();
 	Bufor(int);
+	~Bufor();
 	int getSize();
 	int getIndex();
 	Record* getRecord(int indx);
+	int getAmountOfRecords();
 
 	void setIndex(int);
 	void setRecord(Record* rcrd, int indx);
+	void setSize(int);
 
 	void nullify();
 
