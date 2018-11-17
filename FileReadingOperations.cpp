@@ -1,5 +1,7 @@
 #include "FileReadingOperations.h"
 
+bool FileReadingOperations::isCharacterSpace(char* character) {	return *character == ' '; }
+
 void FileReadingOperations::detectSpaceAndSkip(std::fstream &fileStream)
 {
 	int pos = fileStream.tellg();
@@ -16,7 +18,6 @@ void FileReadingOperations::detectSpaceAndSkip(std::fstream &fileStream)
 	}
 }
 
-bool FileReadingOperations::isCharacterSpace(char* character) {	return *character == ' '; }
 
 bool FileReadingOperations::isEOF(std::fstream &fileStream)
 {
