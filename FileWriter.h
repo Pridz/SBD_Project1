@@ -6,14 +6,12 @@
 #include <memory>
 
 class FileWriter
-{
-	Bufor *bufors;
+{	
 	std::shared_ptr<std::fstream> shr_ptr_out;
 
 public:
-	FileWriter(Bufor *);
-
-	Bufor *getBufors();
+	FileWriter();
+		
 	std::fstream &getFileStream();
 
 	void openFileForWritting(char*);

@@ -1,24 +1,22 @@
 #include "FileReader.h"
 
-FileReader::FileReader(Bufor* bufors) : bufors(bufors) { shr_ptr_in = std::make_shared<std::fstream>(); }
+FileReader::FileReader() { shr_ptr_in = std::make_shared<std::fstream>(); }
 
 void FileReader::openFileStream(char* path) 
 {	
 	shr_ptr_in->open(path, std::fstream::in);
 }
 
-Bufor* FileReader::getBufors() { return bufors; }
-
 std::fstream &FileReader::getInputFileStream() { return *shr_ptr_in; }
 
-std::string FileReader::readText(std::fstream *fileStream)
+std::string FileReader::readText()
 {
 	char str[20];
 	std::string text;
-	FileReadingOperations::detectSpaceAndSkip(*fileStream);
+	FileReadingOperations::detectSpaceAndSkip(*shr_ptr_in);
 	if (!FileReadingOperations::isEOF(*shr_ptr_in))
 	{
-		fileStream->get(str, 20, ' ');
+		shr_ptr_in->get(str, 20, ' ');
 		int i = 0;
 		for (i; str[i] != '\0'; i++);
 		str[i] = '\0';
@@ -27,49 +25,49 @@ std::string FileReader::readText(std::fstream *fileStream)
 	return text;
 }
 
-Pesel FileReader::readPesel(std::fstream *fileStream)
+Pesel FileReader::readPesel()
 {
 	char str[12];
 	Pesel pesel;
-	FileReadingOperations::detectSpaceAndSkip(*fileStream);
-	fileStream->get(str, 12, ' ');
+	FileReadingOperations::detectSpaceAndSkip(*shr_ptr_in);
+	shr_ptr_in->get(str, 12, ' ');
 	pesel.setPesel(str);
 	return pesel;
 }
 
-Record FileReader::readRecord(std::fstream *fileStream)
+Record FileReader::readRecord()
 {
 	Record record;
-	if (!FileReadingOperations::isEOF(*fileStream))
+	if (!FileReadingOperations::isEOF(*shr_ptr_in))
 	{
-		record.setName(&readText(fileStream));
-		record.setSurname(&readText(fileStream));
-		record.setPesel(&readPesel(fileStream));
+		record.setName(&readText());
+		record.setSurname(&readText());
+		record.setPesel(&readPesel());
 	}
 	return record;
 }
 
-void FileReader::readPage(std::fstream *fileStream, int buforNumber)
-{
-	Record record;
-	Bufor *bufor = &bufors[buforNumber];
-	int length = bufor->getSize();
-	for (int i = 0; i < length; i++)
-	{
-		record = readRecord(fileStream);
-		if (record.isNull())
-		{
-			return;
-		}
-		bufor->setRecord(&readRecord(fileStream), i);
-	}
-}
+//void FileReader::readPage(std::fstream *fileStream, int buforNumber)
+//{
+//	Record record;
+//	Bufor *bufor = &bufors[buforNumber];
+//	int length = bufor->getSize();
+//	for (int i = 0; i < length; i++)
+//	{
+//		record = readRecord(fileStream);
+//		if (record.isNull())
+//		{
+//			return;
+//		}
+//		bufor->setRecord(&readRecord(fileStream), i);
+//	}
+//}
 
 void FileReader::readToBufors(std::fstream *fileStream, const int amountOfBufors)
 {
 	for (int i = 0; i < amountOfBufors && !FileReadingOperations::isEOF(*fileStream); i++)
 	{
-		readPage(fileStream, i);
+		//readPage(fileStream, i);
 	}
 }
 //void FileReader::readPageOfOneSeries(std::fstream *fileStream, int buforNumber)

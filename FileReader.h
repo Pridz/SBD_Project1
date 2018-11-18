@@ -7,22 +7,20 @@
 #include "FileReadingOperations.h"
 
 class FileReader : public FileReadingOperations
-{
-	Bufor *bufors;
+{	
 	std::shared_ptr<std::fstream> shr_ptr_in;
 		
 public:
-	FileReader(Bufor*);
-
-	Bufor* getBufors();
+	FileReader();
+		
 	std::fstream &getInputFileStream();
 
 	void openFileStream(char*);
 
-	std::string readText(std::fstream *stream);
-	Pesel readPesel(std::fstream *stream);	
-	Record readRecord(std::fstream *stream);
-	void readPage(std::fstream *stream, int);
+	std::string readText();
+	Pesel readPesel();	
+	Record readRecord();
+	//void readPage(std::fstream *stream, int);
 	void readToBufors(std::fstream *, const int);
 
 	void readPageOfOneSeries(std::fstream *stream, int);

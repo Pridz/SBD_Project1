@@ -1,8 +1,6 @@
 #include "FileWriter.h"
 
-FileWriter::FileWriter(Bufor *bufors): bufors(bufors) { shr_ptr_out = std::make_shared<std::fstream>(); }
-
-Bufor *FileWriter::getBufors() { return bufors; }
+FileWriter::FileWriter() { shr_ptr_out = std::make_shared<std::fstream>(); }
 
 std::fstream &FileWriter::getFileStream() { return *shr_ptr_out; }
 
