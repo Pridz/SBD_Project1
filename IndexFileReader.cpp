@@ -19,10 +19,34 @@ int IndexFileReader::readInteger()
 	return number;
 }
 
+int IndexFileReader::findPositionOfLastNumber()
+{
+	int start_pos = getPositionIndicator();
+	setPositionIndicator(0);
+	int pos = getPositionIndicator();
+	while (!isEOF(*shr_ptr_in_indx))
+	{
+		readInteger();
+		detectSpaceAndSkip(*shr_ptr_in_indx);
+		if (isEOF(*shr_ptr_in_indx))
+		{						
+			return pos;
+		}
+		else
+		{
+			readInteger();
+		}
+		pos = getPositionIndicator();
+	}
+	setPositionIndicator(start_pos);
+	return pos;
+}
+
 int IndexFileReader::readAmountOfSeries() 
 {
 	int pos = getPositionIndicator();
-	setPositionIndicator(0);
+	int numberPos = findPositionOfLastNumber();
+	setPositionIndicator(numberPos);
 	int amount = readInteger();
 	setPositionIndicator(pos);
 	return amount;
@@ -56,8 +80,7 @@ void IndexFileReader::missSpace() { shr_ptr_in_indx->ignore(2, ' '); }
 
 void IndexFileReader::setPositionIndicatorOnTheSeriesLine(int indx)
 {
-	setPositionIndicator(0);	
-	missLines(2+indx);
+	setPositionIndicator(0);
 }
 
 SeriesCharacteristics IndexFileReader::readSeriesLine()

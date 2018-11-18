@@ -30,6 +30,7 @@ bool FileReadingOperations::isEOF(std::fstream &fileStream)
 		if (fileStream.eof())
 		{
 			fileStream.seekg(pos);
+			fileStream.clear();
 			return true;
 		}
 		fileStream.seekg(pos);
@@ -38,11 +39,13 @@ bool FileReadingOperations::isEOF(std::fstream &fileStream)
 	if (fileStream.eof())
 	{
 		fileStream.seekg(pos);
+		fileStream.clear();
 		return true;
 	}
 	if (pos == EOF)
 	{
 		fileStream.seekg(pos);
+		fileStream.clear();
 		return true;
 	}
 	fileStream.seekg(pos);

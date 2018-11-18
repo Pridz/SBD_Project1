@@ -15,6 +15,9 @@ public:
 	std::fstream &getFileStream();
 
 	void openFileForWritting(char*);
+	void closeFileStream();
+
+	int getPositionIndicator();
 
 	void writePesel(Pesel*);	
 	void writeName(std::string*);	

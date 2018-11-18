@@ -10,7 +10,9 @@ void IndexFileWriter::openFileStreamA(char *path) { shr_ptr_out_indx->open(path,
 
 void IndexFileWriter::closeFileStream() { shr_ptr_out_indx->close(); }
 
-void IndexFileWriter::setPositionIndicator(int pos) { shr_ptr_out_indx->seekg(pos); }
+void IndexFileWriter::setPositionIndicator(int pos) { shr_ptr_out_indx->seekp(pos); }
+
+void IndexFileWriter::setPositionIndicatorToEndOfStream() { shr_ptr_out_indx->seekp(0, std::ios_base::end); }
 
 int IndexFileWriter::getPositionIndicator() { return shr_ptr_out_indx->tellg(); }
 
@@ -50,19 +52,11 @@ void IndexFileWriter::writeLine(int seriesIndex, int endPos)
 	assert(shr_ptr_out_indx->is_open());
 }
 
-void IndexFileWriter::makeOrderInFile()
-{
-	putEndOfLine();
-	putEndOfLine();
-}
-
 void IndexFileWriter::writeAmountOfSeries(int amountOfSeries)
 {
-	int pos = getPositionIndicator();
-	setPositionIndicator(0);
-	writeInteger(amountOfSeries);
-	if (pos > 0)
-	{
-		setPositionIndicator(pos);
-	}
+	int pos = getPositionIndicator();	
+	setPositionIndicatorToEndOfStream();
+	writeInteger(amountOfSeries);	
+	setPositionIndicator(pos);
+	
 }

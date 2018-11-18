@@ -4,10 +4,11 @@
 #include <fstream>
 #include <memory>
 #include <assert.h>
+#include "FileReadingOperations.h"
 
 struct SeriesCharacteristics;
 
-class IndexFileReader
+class IndexFileReader : public FileReadingOperations
 {
 	int amount;
 	std::shared_ptr<std::fstream> shr_ptr_in_indx;
@@ -22,6 +23,8 @@ class IndexFileReader
 	void setPositionIndicatorOnTheSeriesLine(int);
 
 	void setPositionIndicator(int);
+	int findPositionOfLastNumber();
+
 	int getPositionIndicator();
 	SeriesCharacteristics readSeriesLine();
 	void openFileStream(char*);

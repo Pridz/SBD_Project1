@@ -16,6 +16,7 @@ public:
 	std::fstream &getInputFileStream();
 
 	void openFileStream(char*);
+	void closeFileStream();
 
 	std::string readText();
 	Pesel readPesel();	

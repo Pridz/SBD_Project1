@@ -6,6 +6,10 @@ std::fstream &FileWriter::getFileStream() { return *shr_ptr_out; }
 
 void FileWriter::openFileForWritting(char *path) { shr_ptr_out->open(path, std::fstream::out); }
 
+void FileWriter::closeFileStream() { shr_ptr_out->close(); }
+
+int FileWriter::getPositionIndicator() { return shr_ptr_out->tellp(); }
+
 void FileWriter::writePesel(Pesel *ptr_pesel)
 {
 	char* ptr_str = ptr_pesel->toString();

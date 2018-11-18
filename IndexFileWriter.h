@@ -14,6 +14,7 @@ class IndexFileWriter
 	void putEndOfLine();
 
 	void setPositionIndicator(int);
+	void setPositionIndicatorToEndOfStream();
 	int getPositionIndicator();
 
 public:
@@ -23,8 +24,7 @@ public:
 	void openFileStreamW(char *);
 	void openFileStreamA(char *);
 	void closeFileStream();
-	void writeLine(int, int);
-	void makeOrderInFile();
+	void writeLine(int, int);	
 	void writeAmountOfSeries(int);
 };
 

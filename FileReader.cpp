@@ -9,6 +9,8 @@ void FileReader::openFileStream(char* path)
 
 std::fstream &FileReader::getInputFileStream() { return *shr_ptr_in; }
 
+void FileReader::closeFileStream() { shr_ptr_in->close(); }
+
 std::string FileReader::readText()
 {
 	char str[20];
