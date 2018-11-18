@@ -24,12 +24,12 @@ class IndexFileReader
 	void setPositionIndicator(int);
 	int getPositionIndicator();
 	SeriesCharacteristics readSeriesLine();
+	void openFileStream(char*);
 public:
 	IndexFileReader();
 
 	std::fstream &getFileStream();
 
-	void openFileStream(char*);
 	void prepareForReading(char*);
 	void closeFileStream();
 

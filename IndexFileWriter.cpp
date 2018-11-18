@@ -10,6 +10,10 @@ void IndexFileWriter::openFileStreamA(char *path) { shr_ptr_out_indx->open(path,
 
 void IndexFileWriter::closeFileStream() { shr_ptr_out_indx->close(); }
 
+void IndexFileWriter::setPositionIndicator(int pos) { shr_ptr_out_indx->seekg(pos); }
+
+int IndexFileWriter::getPositionIndicator() { return shr_ptr_out_indx->tellg(); }
+
 void IndexFileWriter::writeInteger(int integer)
 {
 	if (shr_ptr_out_indx->is_open())
@@ -57,5 +61,8 @@ void IndexFileWriter::writeAmountOfSeries(int amountOfSeries)
 	int pos = getPositionIndicator();
 	setPositionIndicator(0);
 	writeInteger(amountOfSeries);
-	setPositionIndicator(pos);
+	if (pos > 0)
+	{
+		setPositionIndicator(pos);
+	}
 }

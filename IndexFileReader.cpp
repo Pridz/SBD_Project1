@@ -57,8 +57,7 @@ void IndexFileReader::missSpace() { shr_ptr_in_indx->ignore(2, ' '); }
 void IndexFileReader::setPositionIndicatorOnTheSeriesLine(int indx)
 {
 	setPositionIndicator(0);	
-	missLines(2);
-	missLines(indx);
+	missLines(2+indx);
 }
 
 SeriesCharacteristics IndexFileReader::readSeriesLine()
