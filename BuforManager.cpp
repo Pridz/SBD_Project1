@@ -1,19 +1,21 @@
 #include "BuforManager.h"
 
-BuforManager::BuforManager() : bufors(nullptr), amountOfBufors(0), seriesData(nullptr) {}
-
-BuforManager::BuforManager(Bufor* bufors, int amountOfBufors) : bufors(bufors), amountOfBufors(amountOfBufors)
+BuforManager::BuforManager() : seriesData(nullptr) 
 {
-	seriesData = nullptr;
+	bufors = nullptr;
+	amountOfBufors = 0;
+	amountOfRecords = 0;
+	buforSize = 0;
 }
 
-void BuforManager::setBufors(Bufor *bufors) { this->bufors = bufors; }
-
-void BuforManager::setAmountOfBufors(int amountOfBufors) { this->amountOfBufors = amountOfBufors; }
-
-Bufor *BuforManager::getBufors() { return bufors; }
-
-int BuforManager::getAmountOfBufors() { return amountOfBufors; }
+BuforManager::BuforManager(Bufor* bufors, int amountOfBufors)
+{
+	this->bufors = bufors;
+	this->amountOfBufors = amountOfBufors;
+	setAmountOfRecords();
+	setBuforSize();
+	seriesData = nullptr;
+}
 
 SeriesCharacteristics BuforManager::getDataAboutSeries(int index)
 {
