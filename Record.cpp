@@ -8,6 +8,16 @@ std::string *Record::getName() { return &name; }
 
 std::string *Record::getSurname() { return &surname; }
 
+void Record::setName(std::string *str) { name = *str; }
+
+void Record::setSurname(std::string *str) { surname = *str; }
+
+void Record::setName(char *str) { name = *str; }
+
+void Record::setSurname(char *str) { surname = *str; }
+
+void Record::setPesel(Pesel *pesel) { this->pesel = *pesel; }
+
 void Record::nullify()
 {
 	name.clear();
@@ -29,5 +39,7 @@ Record& Record::operator=(Record& other)
 }
 
 bool operator<(Record& left, Record& right) { return *(left.getPesel()) < *(right.getPesel()) || (*(left.getPesel()) == *(right.getPesel()) && *(left.getSurname()) < *(right.getSurname())) || (*(left.getPesel()) == *(right.getPesel()) && *(left.getSurname()) == *(right.getSurname()) && *(left.getName()) < *(right.getName())); }
-bool operator>(Record& left, Record& right) { return *(left.getPesel()) > *(right.getPesel()) || (*(left.getPesel()) == *(right.getPesel()) && *(left.getSurname()) > *(right.getSurname())) || (*(left.getPesel()) == *(right.getPesel()) && *(left.getSurname()) == *(right.getSurname()) && *(left.getName()) > *(right.getName())); }
+bool operator>(Record& left, Record& right) { return !(left < right); }
 bool operator==(Record& left, Record& right) { return *(left.getPesel()) == *(right.getPesel()) && *(left.getSurname()) == *(right.getSurname()) && *(left.getName()) == *(right.getName()); }
+bool operator!=(Record& left, Record& right) { return !(left == right); }
+bool operator<=(Record& left, Record& right) {	return left < right || left == right; }
