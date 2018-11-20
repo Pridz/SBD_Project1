@@ -2,47 +2,20 @@
 #define BUFORS_HEAPSORT_H
 
 #include "Bufor.h"
+#include "BuforManagement.h"
 
-struct RecordPosition
-{
-	int buforIndex;
-	int recordIndex;
-	RecordPosition() : buforIndex(0), recordIndex(0) {}
-
-	RecordPosition& operator=(RecordPosition& other)
-	{
-		buforIndex = other.buforIndex;
-		recordIndex = other.recordIndex;
-		return *this;
-	}
-};
-
-class BuforsHeapSort
-{
-	Bufor *bufors;
-	int size;
-	int amountOfRecords;
-	int buforSize;
+class BuforsHeapSort : public BuforManagement
+{	
+	typedef BuforManagement super;	
 	int heapSortIndex;
 
-	RecordPosition getIndexOfRecord(int indx);
 public:
 	BuforsHeapSort();
 	BuforsHeapSort(Bufor* bufors, int amountOfBufors);
-
-	void setBufors(Bufor* bufors);
+		
 	void setHeapSortIndex(int amountOfBufors);
-	void setAmountOfRecords();
-	void setBuforSize();
-
-
-	int getSize();
-	int getAmountOfRecords();
-	int getBuforSize();
-	int getHeapSortIndex();
-	Bufor *getBufors();
-
-	RecordPosition indexOfRecord(int indx);
+		
+	int getHeapSortIndex();		
 
 	void heapify(int indx);
 	void correctEndOfHeap();

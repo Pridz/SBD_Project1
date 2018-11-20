@@ -1,15 +1,19 @@
 #include"BuforsHeapSort.h"
 
-BuforsHeapSort::BuforsHeapSort() : bufors(nullptr)
+BuforsHeapSort::BuforsHeapSort()
 {
-	size = 0;
+	bufors = nullptr;
+	amountOfBufors = 0;
 	amountOfRecords = 0;
 	buforSize = 0;
 	heapSortIndex = 0;
 }
 
-BuforsHeapSort::BuforsHeapSort(Bufor* bufors, int amountOfBufors) : bufors(bufors), size(amountOfBufors), heapSortIndex(0)
+BuforsHeapSort::BuforsHeapSort(Bufor* bufors, int amountOfBufors)
 {
+	this->bufors = bufors;
+	heapSortIndex = 0;
+	this->amountOfBufors = amountOfBufors;
 	for (int i = 0; i < amountOfBufors; i++)
 	{
 		heapSortIndex += bufors[i].getAmountOfRecords();
@@ -17,8 +21,6 @@ BuforsHeapSort::BuforsHeapSort(Bufor* bufors, int amountOfBufors) : bufors(bufor
 	buforSize = bufors[0].getSize();		
 	amountOfRecords = heapSortIndex;
 }
-
-void BuforsHeapSort::setBufors(Bufor* bufors) { this->bufors = bufors; }
 
 void BuforsHeapSort::setHeapSortIndex(int amountOfBufors)
 {
@@ -28,30 +30,7 @@ void BuforsHeapSort::setHeapSortIndex(int amountOfBufors)
 	}
 }
 
-void BuforsHeapSort::setAmountOfRecords() { amountOfRecords = heapSortIndex; }
-
-void BuforsHeapSort::setBuforSize() { buforSize = bufors[0].getSize(); }
-
-int BuforsHeapSort::getSize() { return size; }
-
-int BuforsHeapSort::getAmountOfRecords() { return amountOfRecords; }
-
-int BuforsHeapSort::getBuforSize() { return buforSize; }
-
 int BuforsHeapSort::getHeapSortIndex() { return heapSortIndex; }
-
-Bufor *BuforsHeapSort::getBufors() { return bufors; }
-
-RecordPosition BuforsHeapSort::getIndexOfRecord(int indx)
-{
-	assert(indx < size * buforSize);
-	RecordPosition position;
-	position.buforIndex = indx / buforSize;
-	position.recordIndex = indx % buforSize;
-	return position;
-}
-
-RecordPosition BuforsHeapSort::indexOfRecord(int indx) { return getIndexOfRecord(indx); }
 
 void BuforsHeapSort::heapify(int indx)
 {
