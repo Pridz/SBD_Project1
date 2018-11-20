@@ -47,6 +47,11 @@ void Bufor::setRecord(Record* rcd, int indx)
 	assert(!rcd->isNull());
 }
 
+void Bufor::setRecord(Record *record)
+{
+	setRecord(record, index);
+}
+
 bool Bufor::areRecordsInitialized() { return records; }
 
 void Bufor::changeRecords()

@@ -43,12 +43,14 @@ public:
 struct SeriesCharacteristics
 {
 	int index;
+	int actualPosition;
 	int endingPosition;
 
-	SeriesCharacteristics() : index(0), endingPosition(0) {}
+	SeriesCharacteristics() : index(0), endingPosition(0), actualPosition(0) {}
 	SeriesCharacteristics& operator=(SeriesCharacteristics &other)
 	{
 		index = other.index;
+		actualPosition = other.actualPosition;
 		endingPosition = other.endingPosition;
 		return *this;
 	}

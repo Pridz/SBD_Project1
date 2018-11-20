@@ -1,5 +1,13 @@
 #include"BuforsHeapSort.h"
 
+BuforsHeapSort::BuforsHeapSort() : bufors(nullptr)
+{
+	size = 0;
+	amountOfRecords = 0;
+	buforSize = 0;
+	heapSortIndex = 0;
+}
+
 BuforsHeapSort::BuforsHeapSort(Bufor* bufors, int amountOfBufors) : bufors(bufors), size(amountOfBufors), heapSortIndex(0)
 {
 	for (int i = 0; i < amountOfBufors; i++)
@@ -9,6 +17,20 @@ BuforsHeapSort::BuforsHeapSort(Bufor* bufors, int amountOfBufors) : bufors(bufor
 	buforSize = bufors[0].getSize();		
 	amountOfRecords = heapSortIndex;
 }
+
+void BuforsHeapSort::setBufors(Bufor* bufors) { this->bufors = bufors; }
+
+void BuforsHeapSort::setHeapSortIndex(int amountOfBufors)
+{
+	for (int i = 0; i < amountOfBufors; i++)
+	{
+		heapSortIndex += bufors[i].getAmountOfRecords();
+	}
+}
+
+void BuforsHeapSort::setAmountOfRecords() { amountOfRecords = heapSortIndex; }
+
+void BuforsHeapSort::setBuforSize() { buforSize = bufors[0].getSize(); }
 
 int BuforsHeapSort::getSize() { return size; }
 

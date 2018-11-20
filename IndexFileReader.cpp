@@ -48,6 +48,7 @@ int IndexFileReader::readAmountOfSeries()
 	int numberPos = findPositionOfLastNumber();
 	setPositionIndicator(numberPos);
 	int amount = readInteger();
+	shr_ptr_in_indx->clear();
 	setPositionIndicator(pos);
 	return amount;
 }

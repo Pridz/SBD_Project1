@@ -23,6 +23,7 @@ public:
 
 	void setIndex(int);
 	void setRecord(Record* rcrd, int indx);
+	void setRecord(Record* record);
 	void setSize(int);
 
 	void nullify();

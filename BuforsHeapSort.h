@@ -27,7 +27,14 @@ class BuforsHeapSort
 
 	RecordPosition getIndexOfRecord(int indx);
 public:
-	BuforsHeapSort(Bufor*, int);
+	BuforsHeapSort();
+	BuforsHeapSort(Bufor* bufors, int amountOfBufors);
+
+	void setBufors(Bufor* bufors);
+	void setHeapSortIndex(int amountOfBufors);
+	void setAmountOfRecords();
+	void setBuforSize();
+
 
 	int getSize();
 	int getAmountOfRecords();
