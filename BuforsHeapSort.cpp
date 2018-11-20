@@ -38,13 +38,13 @@ void BuforsHeapSort::heapify(int indx)
 	Record null;
 	Record* parent, *leftSon, *rightSon;
 	RecordPosition position;
-	position = getIndexOfRecord(indx);
+	position = getPositionOfRecord(indx);
 	parent = bufors[position.buforIndex].getRecord(position.recordIndex);
-	position = getIndexOfRecord(2 * indx + 1);
+	position = getPositionOfRecord(2 * indx + 1);
 	leftSon = bufors[position.buforIndex].getRecord(position.recordIndex);
 	if (2*indx + 2 < heapSortIndex)
 	{
-		position = getIndexOfRecord(2 * indx + 2);
+		position = getPositionOfRecord(2 * indx + 2);
 		rightSon = bufors[position.buforIndex].getRecord(position.recordIndex);
 	}
 	else
@@ -94,9 +94,9 @@ void BuforsHeapSort::correctEndOfHeap()
 	Record temporary;
 	Record* parent, *leftSon;
 	RecordPosition position;
-	position = getIndexOfRecord(0);
+	position = getPositionOfRecord(0);
 	parent = bufors[position.buforIndex].getRecord(position.recordIndex);
-	position = getIndexOfRecord(1);
+	position = getPositionOfRecord(1);
 	leftSon = bufors[position.buforIndex].getRecord(position.recordIndex);
 	temporary = *parent;
 	if (*leftSon < *parent)
@@ -121,11 +121,11 @@ void BuforsHeapSort::heapSort()
 	Record temporary;
 	Record *root, *last;
 	RecordPosition position;
-	position = getIndexOfRecord(0);
+	position = getPositionOfRecord(0);
 	root = bufors[position.buforIndex].getRecord(position.recordIndex);
 	for (int i = heapSortIndex; i > 1; i--)
 	{
-		position = getIndexOfRecord(i);
+		position = getPositionOfRecord(i);
 		last = bufors[position.buforIndex].getRecord(position.recordIndex);
 		temporary = *root;
 		*root = *last;
