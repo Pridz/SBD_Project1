@@ -39,3 +39,40 @@ void BuforManager::updateSeriesData(InOutManager *ioManager)
 		seriesData[i] = ioManager->readSeriesCharacteristics(i);
 	}
 }
+
+BuforManager::RecordPosition BuforManager::getClosestRecordsPosition(int buforsRange)
+{
+	Record *record;
+	RecordPosition position;
+	if (buforsRange > amountOfBufors)
+	{
+		assert(buforsRange <= amountOfBufors);
+		return position;
+	}
+	for (int i = 0; i < buforSize * buforsRange; i++)
+	{
+		position = getPositionOfRecord(i);
+		record = bufors[position.buforIndex].getRecord(position.recordIndex);
+		if (!record->isNull())
+		{
+			return position;
+		}
+	}
+	return position;
+}
+
+BuforManager::RecordPosition BuforManager::getLeastRecordPosition(int buforsRange)
+{
+	RecordPosition position = getClosestRecordsPosition(buforsRange);
+	int length = amountOfBufors * buforSize;
+	Record *ptr_record = bufors[position.buforIndex].getRecord(position.recordIndex);
+	for (int i = 0; i < length; i++)
+	{
+		position = getPositionOfRecord(i);
+		if (*ptr_record > *bufors[position.buforIndex].getRecord(position.recordIndex))
+		{
+			ptr_record = bufors[position.buforIndex].getRecord(position.recordIndex);
+		}		
+	}
+	return position;
+}

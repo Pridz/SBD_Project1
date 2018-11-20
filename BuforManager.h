@@ -7,8 +7,10 @@
 
 class BuforManager : public BuforManagement
 {
+	typedef BuforManagement super;
 	SeriesCharacteristics *seriesData;
 	
+	RecordPosition getClosestRecordsPosition(int buforsRange);
 public:
 	BuforManager();
 	BuforManager(Bufor* bufors, int amountOfBufors);
@@ -16,6 +18,7 @@ public:
 	SeriesCharacteristics getDataAboutSeries(int ofIndex);
 	
 	void updateSeriesData(InOutManager *ioManager);	
+	RecordPosition getLeastRecordPosition(int buforsRange);
 };
 
 #endif // BUFOR_MANAGER_H
