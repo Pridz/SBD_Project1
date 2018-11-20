@@ -25,7 +25,7 @@ protected:
 		}
 	};
 
-	RecordPosition getIndexOfRecord(int indx);
+	RecordPosition getPositionOfRecord(int indx);
 public:
 	void setAmountOfBufors(int amountOfBufors);
 	void setBufors(Bufor* bufors);	

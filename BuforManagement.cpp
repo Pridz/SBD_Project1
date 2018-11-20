@@ -22,7 +22,7 @@ int BuforManagement::getBuforSize() { return buforSize; }
 
 Bufor *BuforManagement::getBufors() { return bufors; }
 
-BuforManagement::RecordPosition BuforManagement::getIndexOfRecord(int indx)
+BuforManagement::RecordPosition BuforManagement::getPositionOfRecord(int indx)
 {
 	assert(indx < amountOfBufors * buforSize);
 	RecordPosition position;
